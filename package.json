@@ -1,0 +1,53 @@
+{
+  "name": "smart-route",
+  "version": "0.0.1",
+  "private": true,
+  "devDependencies": {
+    "react-scripts": "^1.0.13"
+  },
+  "dependencies": {
+    "animejs": "^2.2.0",
+    "assets": "file:src/assets",
+    "babel-preset-es2015": "^6.24.1",
+    "crypto-js": "^3.1.9-1",
+    "firebase": "6.3.1",
+    "material-ui": "^0.20.0",
+    "moment": "2.24.0",
+    "react": "16.8.6",
+    "react-dom": "16.8.6",
+    "react-redux": "7.1.0",
+    "react-router": "5.0.1",
+    "react-router-dom": "5.0.1",
+    "react-router-redux": "4.0.8",
+    "redux": "4.0.4",
+    "redux-thunk": "2.3.0",
+    "request": "2.88.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "deploy": "npm run build && firebase deploy",
+    "coverage": "npm test -- --coverage"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}",
+      "!<rootDir>/node_modules/",
+      "!<rootDir>/path/to/dir/"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 90,
+        "functions": 90,
+        "lines": 90,
+        "statements": 90
+      }
+    },
+    "coverageReporters": [
+      "text"
+    ]
+  },
+  "homepage": "https://smartroute.io"
+}
