@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Provider } from 'react-redux'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-import Home from './components/Home'
+import Home from './components/Home/'
 
 const Root = ({ store }) => (
   <Provider store={store}>
