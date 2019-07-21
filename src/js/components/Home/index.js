@@ -34,7 +34,7 @@ export class Home extends Component {
     } = this.props;
     switch (this.state.page) {
       case 0: {
-        let {latitude, longitude} = originAddress || userLocation;
+        let {latitude, longitude} = originAddress || userLocation || {};
         content = <Map latitude={latitude} longitude={longitude} />;
       }
         break;
