@@ -14,6 +14,9 @@ export const Container = styled.div`
   transform: translate(-50%, 0);
   border-radius: 5px;
   transition: height 0.2s ease-in-out 0s, width 0.2s ease-in-out 0s; 
+  @media screen and (max-width: 480px) {
+    bottom: 11%;
+  }
 `;
 
 export const Input = styled.input`
