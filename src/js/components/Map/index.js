@@ -1,9 +1,6 @@
 import React, {Component} from 'react'
 /*global H*/
 export class Map extends Component {
-  constructor(props) {
-    super(props);
-  }
   componentDidMount() {
     // Obtain the default map types from the platform object:
     this.platform = new H.service.Platform({
