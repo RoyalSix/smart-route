@@ -5,7 +5,7 @@ var throttle = require('lodash.throttle');
 
 function SearchBox({searchLocation, searchSuggestions = [], selectAddress}) {
   const bottom = searchSuggestions.length ? '22%' : '11%';
-  const height = searchSuggestions.length ? '64%' : '100px';
+  const height = searchSuggestions.length ? '200px' : '100px';
   const throttledSearch = throttle((value) => searchLocation(value), 500);
   return (
     <Container height={height} bottom={bottom}>
