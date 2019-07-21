@@ -56,7 +56,7 @@ export class Home extends Component {
       <Container>
         {originAddress ? <TopSearchBar destAddress={destAddress} selectDestinationAddress={this.selectDestinationAddress} destinationAddressSuggestions={destinationAddressSuggestions} searchDestinationAddress={searchDestinationAddress} originAddress={originAddress} /> : null}
         {content}
-        {originAddress &&  destAddress ? <TripOptions destAddress={destAddress} originAddress={originAddress} /> : null}
+        {originAddress && destAddress ? <TripOptions selectOption={this.selectTripOptions} destAddress={destAddress} originAddress={originAddress} /> : null}
         {!originAddress ? <SearchBox selectAddress={selectAddress} searchSuggestions={searchSuggestions} searchLocation={searchLocation} /> : null}
       </Container>
     );

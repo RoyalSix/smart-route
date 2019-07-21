@@ -7,7 +7,6 @@ export const Container = styled.div`
 export const TripIcon = styled.img`
   height: 35px;
   width: 35px;
-  margin-right: 43px;
   :last-child {
     margin-right: 0;
   }
@@ -15,7 +14,9 @@ export const TripIcon = styled.img`
 
 export const TripTypesContainer = styled.div`
   display: flex;
-  flex-direction: column
+  flex-direction: column;
+  margin-right: 43px;
+  align-items: center;
 `;
 
 export const TripOptionContainer = styled.div`
@@ -25,6 +26,7 @@ export const TripOptionContainer = styled.div`
   background-color: #F6F6FC;
   border-bottom: 1px solid #DEE0EC;
   align-items: center;
+  padding: 0 24px;
 `;
 
 export const TripTitle = styled.div`
@@ -55,4 +57,5 @@ font-size: 10px;
 color: #8E95A0;
 letter-spacing: 0;
 line-height: 15px;
+text-transform: capitalize;
 `;
