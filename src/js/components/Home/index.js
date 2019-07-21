@@ -14,7 +14,7 @@ export class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      page: 0
+      page: 1
     };
     this.selectDestinationAddress = this.selectDestinationAddress.bind(this);
   }
@@ -38,7 +38,7 @@ export class Home extends Component {
         content = <Map latitude={latitude} longitude={longitude} />;
       }
         break;
-      case 1: content = <RoutingMap originAddress={originAddress} destAddress={destAddress} />;
+      case 1: content = <RoutingMap originAddress={{latitude: '33.8652', longitude: '-117.99804'}} destAddress={{latitude: '33.89157', longitude: '-118.00425'}} />;
         break;
       default:
         break;

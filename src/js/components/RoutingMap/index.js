@@ -40,7 +40,7 @@ export class RoutingMap extends Component {
 
       // Create a polyline to display the route:
       var routeLine = new H.map.Polyline(linestring, {
-        style: {strokeColor: 'green', lineWidth: 2}
+        style: {strokeColor: 'green', lineWidth: 3}
       });
 
       // Create a marker for the start point:
@@ -78,9 +78,10 @@ export class RoutingMap extends Component {
           document.getElementById('mapContainer'),
           defaultLayers.vector.normal.map,
           {
-            zoom: 10,
+            zoom: 14,
             center: {lat: 52.51, lng: 13.4}
           });
+        new H.mapevents.Behavior(new H.mapevents.MapEvents(this.map));
       }
 
       // Create the parameters for the routing request:
