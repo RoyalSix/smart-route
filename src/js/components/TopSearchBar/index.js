@@ -5,7 +5,7 @@ import MarkerImage from './marker.svg';
 import DestinationSuggestions from './DestinationSuggestions';
 var throttle = require('lodash.throttle');
 
-function TopSearchBar({originAddress, searchDestinationAddress, destinationAddressSuggestions, selectDestinationAddress}) {
+function TopSearchBar({destAddress, originAddress, searchDestinationAddress, destinationAddressSuggestions, selectDestinationAddress}) {
   const throttledSearch = throttle((value) => searchDestinationAddress(value), 500);
   return (
     <Container>
@@ -24,7 +24,7 @@ function TopSearchBar({originAddress, searchDestinationAddress, destinationAddre
         </Options>
       </SearchContainer>
       {
-        destinationAddressSuggestions.length ? <DestinationSuggestions selectDestinationAddress={selectDestinationAddress} destinationAddressSuggestions={destinationAddressSuggestions} /> : null
+        !destAddress && destinationAddressSuggestions.length ? <DestinationSuggestions selectDestinationAddress={selectDestinationAddress} destinationAddressSuggestions={destinationAddressSuggestions} /> : null
       }
     </Container>
   );
