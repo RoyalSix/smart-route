@@ -1,31 +1,40 @@
-import React, {Component} from 'react'
 /*global H*/
+import React, {Component} from 'react'
+import {Container} from './styled';
 export class Map extends Component {
-  componentDidMount() {
-    // Obtain the default map types from the platform object:
-    this.platform = new H.service.Platform({
-      'apikey': 'oJoZvCU0vs1cfOTzlU1TL8PJcUVyem2fKBvS1eHfh2k'
-    });
-    var defaultLayers = this.platform.createDefaultLayers();
+  constructor(props) {
+    super(props);
+    this.state = {
 
-    // Instantiate (and display) a map object:
-    var map = new H.Map(
-      document.getElementById('mapContainer'),
-      defaultLayers.vector.normal.map,
-      {
-        zoom: 10,
-        center: {lat: 52.5, lng: 13.4}
+    }
+    this.setMap = this.setMap.bind(this)
+  }
+  setMap(latitude, longitude) {
+    if (latitude, longitude) {
+      this.platform = new H.service.Platform({
+        'apikey': 'oJoZvCU0vs1cfOTzlU1TL8PJcUVyem2fKBvS1eHfh2k'
       });
+      var defaultLayers = this.platform.createDefaultLayers();
+      var map = new H.Map(
+        document.getElementById('mapContainer'),
+        defaultLayers.vector.normal.map,
+        {
+          zoom: 20,
+          center: {lat: latitude, lng: longitude}
+        });
       new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
+    }
+  }
+
+  componentDidUpdate() {
+    const {latitude, longitude} = this.props;
+    this.setMap(latitude, longitude)
   }
 
   render() {
     return (
-      <div style={{
-        width:'100vw',
-        height: '100vw'
-      }} id="mapContainer">
-      </div >
+      <Container id="mapContainer">
+      </Container>
     )
   }
 }
