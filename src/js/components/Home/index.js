@@ -16,7 +16,7 @@ export class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      page: 1
+      page: 0
     };
     this.selectDestinationAddress = this.selectDestinationAddress.bind(this);
   }
