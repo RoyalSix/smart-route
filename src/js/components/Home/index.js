@@ -33,7 +33,10 @@ export class Home extends Component {
       destinationAddressSuggestions, destAddress
     } = this.props;
     switch (this.state.page) {
-      case 0: content = <Map {...userLocation} />;
+      case 0: {
+        let {latitude, longitude} = originAddress || userLocation;
+        content = <Map latitude={latitude} longitude={longitude} />;
+      }
         break;
       case 1: content = <RoutingMap originAddress={originAddress} destAddress={destAddress} />;
         break;
