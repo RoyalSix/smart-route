@@ -15,6 +15,7 @@
     "firebase": "6.3.1",
     "ip": "^1.1.5",
     "iplocation": "^6.1.0",
+    "lodash.throttle": "^4.1.1",
     "material-ui": "^0.20.0",
     "moment": "2.24.0",
     "react": "16.8.6",
