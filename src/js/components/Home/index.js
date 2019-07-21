@@ -16,6 +16,7 @@ export class Home extends Component {
     this.state = {
       page: 0
     };
+    this.selectDestinationAddress = this.selectDestinationAddress.bind(this);
   }
   componentWillMount() {
     this.props.getInitialLocation();
