@@ -4,7 +4,7 @@ import OriginDotSVG from './green_dot.svg';
 import MarkerImage from './marker.svg';
 import DestinationSuggestions from './DestinationSuggestions';
 
-function TopSearchBar({originAddress, searchDestinationAddress, destinationAddressSuggestions}) {
+function TopSearchBar({originAddress, searchDestinationAddress, destinationAddressSuggestions, selectDestinationAddress}) {
   return (
     <div>
       <Container>
@@ -22,7 +22,7 @@ function TopSearchBar({originAddress, searchDestinationAddress, destinationAddre
         </Options>
       </Container>
       {
-        destinationAddressSuggestions.length ? <DestinationSuggestions destinationAddressSuggestions={destinationAddressSuggestions} /> : null
+        destinationAddressSuggestions.length ? <DestinationSuggestions selectDestinationAddress={selectDestinationAddress} destinationAddressSuggestions={destinationAddressSuggestions} /> : null
       }
     </div>
   );

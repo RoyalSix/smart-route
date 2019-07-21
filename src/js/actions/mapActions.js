@@ -32,6 +32,17 @@ export function selectAddress(originAddress) {
   };
 }
 
+export function selectDestinationAddress(destAddress) {
+  return async dispatch => {
+    const destAddressCoors = await mapHelpers.getCoorFromAddress(destAddress);
+    dispatch({
+      type: types.SET_DESTINATION,
+      destAddress: destAddressCoors
+    });
+  };
+}
+
+
 export function searchDestinationAddress(address) {
   return async dispatch => {
     const {suggestions} = await mapHelpers.getLocations(address);

@@ -5,7 +5,10 @@ import Map from '../Map';
 import RoutingMap from '../RoutingMap';
 import SearchBox from '../SearchBox';
 import TopSearchBar from '../TopSearchBar';
-import {getInitialLocation, searchLocation, selectAddress, searchDestinationAddress} from '../../actions/mapActions';
+import {
+  getInitialLocation, searchLocation, selectAddress,
+  searchDestinationAddress, selectDestinationAddress
+} from '../../actions/mapActions';
 
 export class Home extends Component {
   constructor(props) {
@@ -34,7 +37,7 @@ export class Home extends Component {
     }
     return (
       <Container>
-        {originAddress ? <TopSearchBar destinationAddressSuggestions={destinationAddressSuggestions} searchDestinationAddress={searchDestinationAddress} originAddress={originAddress} /> : null}
+        {originAddress ? <TopSearchBar selectDestinationAddress={selectDestinationAddress} destinationAddressSuggestions={destinationAddressSuggestions} searchDestinationAddress={searchDestinationAddress} originAddress={originAddress} /> : null}
         {content}
         {!originAddress ? <SearchBox selectAddress={selectAddress} searchSuggestions={searchSuggestions} searchLocation={searchLocation} /> : null}
       </Container>
@@ -51,6 +54,7 @@ const mapDispatchToProps = {
   getInitialLocation,
   searchLocation,
   selectAddress,
+  selectDestinationAddress,
   searchDestinationAddress
 };
 
