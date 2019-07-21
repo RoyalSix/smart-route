@@ -10,7 +10,7 @@ export class Map extends Component {
     this.setMap = this.setMap.bind(this)
   }
   setMap(latitude, longitude) {
-    if (latitude, longitude) {
+    if (latitude && longitude) {
       this.platform = new H.service.Platform({
         'apikey': 'oJoZvCU0vs1cfOTzlU1TL8PJcUVyem2fKBvS1eHfh2k'
       });

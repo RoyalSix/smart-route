@@ -1,13 +1,14 @@
 import React, {useState} from 'react'
-import {Container, Input} from './styled';
+import {Container, Input, Title} from './styled';
 
-function SearchBar() {
+function SearchBox() {
   const [searchValue, setSearchValue] = useState("");
   return (
     <Container>
+      <Title>Welcome To Smart Route</Title>
       <Input value={searchValue} onChange={({target: {value}}) => setSearchValue(value)} placeholder="Enter Destination" />
     </Container>
   )
 }
 
-export default SearchBar
+export default SearchBox

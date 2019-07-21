@@ -2,8 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux';
 import {Container} from './styled';
 import Map from '../Map'
-import Header from '../Header';
-import SearchBar from '../SearchBar';
+import SearchBox from '../SearchBox';
 import {getInitialLocation} from '../../actions/mapActions';
 
 export class Home extends Component {
@@ -20,12 +19,14 @@ export class Home extends Component {
     let content = <div />;
     switch (this.state.page) {
       case 0: content = <Map {...this.props.userLocation} />
+        break;
+      default:
+        break;
     }
     return (
       <Container>
-        <Header />
-        <SearchBar />
-        {content}
+        {/* {content} */}
+        <SearchBox />
       </Container>
     )
   }

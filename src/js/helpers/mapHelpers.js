@@ -16,7 +16,7 @@ export function getCurrentLocation() {
 
 export function getLocationFromIP() {
   return new Promise((resolve, reject) => {
-    const ip = ip.address();
-    iplocation(ip).then(resolve);
+    const _ip = ip.address();
+    iplocation(_ip).then(resolve);
   })
 }
