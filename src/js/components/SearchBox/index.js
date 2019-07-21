@@ -1,12 +1,13 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {Container, Input, Title} from './styled';
 
-function SearchBox() {
-  const [searchValue, setSearchValue] = useState("");
+function SearchBox({searchLocation, searchSuggestions = []}) {
+  const bottom = searchSuggestions.length ? '22%' : '11%';
+  const height = searchSuggestions.length ? '64%' : '100px';
   return (
-    <Container>
+    <Container height={height} bottom={bottom}>
       <Title>Welcome To Smart Route</Title>
-      <Input value={searchValue} onChange={({target: {value}}) => setSearchValue(value)} placeholder="Enter Destination" />
+      <Input onChange={({target: {value}}) => searchLocation(value)} placeholder="Enter Destination" />
     </Container>
   )
 }

@@ -1,17 +1,19 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  height: 26.67vw;
-  width: 91.47vw;
+  height: ${props => props.height};
+  width: 343px;
   position: absolute;
   background-color: white;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  bottom: 86px;
+  bottom: ${props => props.bottom};
   left: 50%;
   transform: translate(-50%, 0);
+  border-radius: 5px;
+  transition: height 0.2s ease-in-out 0s, width 0.2s ease-in-out 0s; 
 `;
 
 export const Input = styled.input`
@@ -21,7 +23,7 @@ export const Input = styled.input`
   letter-spacing: 0;
   align-self: flex-start;
   margin-left: 13px;
-  width: 78.67vw;
+  width: 90%;
   padding-bottom: 16.5px;
   border-bottom: 1px solid #D8D8D8;
   margin-top: 15px;

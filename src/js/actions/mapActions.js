@@ -10,3 +10,14 @@ export function getInitialLocation() {
     })
   }
 }
+
+
+export function searchLocation(address) {
+  return async dispatch => {
+    const {suggestions} = await mapHelpers.getLocations(address);
+    dispatch({
+      type: types.SEARCH_LOCATION,
+      searchSuggestions: suggestions || []
+    })
+  }
+}
