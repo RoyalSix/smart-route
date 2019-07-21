@@ -4,7 +4,7 @@ import * as fetchHelpers from './fetchHelpers';
 const HERE_API_URL = 'https://autocomplete.geocoder.api.here.com/6.2'
 
 export function getCurrentLocation() {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         const {latitude, longitude} = position.coords;
@@ -17,7 +17,7 @@ export function getCurrentLocation() {
 }
 
 export function getLocationFromIP() {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     const _ip = ip.address();
     iplocation(_ip).then(resolve);
   })
