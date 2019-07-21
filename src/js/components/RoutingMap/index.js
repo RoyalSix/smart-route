@@ -1,21 +1,21 @@
 /*global H*/
-import React, {Component} from 'react'
+import React, {Component} from 'react';
 import {Container} from './styled';
 export class RoutingMap extends Component {
   constructor(props) {
     super(props);
     this.state = {
 
-    }
-    this.setMap = this.setMap.bind(this)
-  }
-  setMap(latitude, longitude) {
-    const platform = new H.service.Platform({
+    };
+    this.setMap = this.setMap.bind(this);
+    this.platform = new H.service.Platform({
       'apikey': 'oJoZvCU0vs1cfOTzlU1TL8PJcUVyem2fKBvS1eHfh2k'
     });
+  }
+  setMap(originAddress, destAddress) {
 
     // Get the default map types from the platform object:
-    var defaultLayers = platform.createDefaultLayers();
+    var defaultLayers = this.platform.createDefaultLayers();
 
     // Instantiate the map:
     var map = new H.Map(
@@ -30,9 +30,9 @@ export class RoutingMap extends Component {
       // The routing mode:
       'mode': 'fastest;car',
       // The start point of the route:
-      'waypoint0': 'geo!50.1120423728813,8.68340740740811',
+      'waypoint0': `geo!${originAddress.latitude},${originAddress.longitude}`,
       // The end point of the route:
-      'waypoint1': 'geo!52.5309916298853,13.3846220493377',
+      'waypoint1': `geo!${destAddress.latitude},${destAddress.longitude}`,
       // To retrieve the shape of the route we choose the route
       // representation mode 'display'
       'representation': 'display'
@@ -66,7 +66,7 @@ export class RoutingMap extends Component {
 
         // Create a polyline to display the route:
         var routeLine = new H.map.Polyline(linestring, {
-          style: {strokeColor: 'blue', lineWidth: 3}
+          style: {strokeColor: 'green', lineWidth: 2}
         });
 
         // Create a marker for the start point:
@@ -86,6 +86,7 @@ export class RoutingMap extends Component {
 
         // Set the map's viewport to make the whole route visible:
         map.getViewModel().setLookAtData({bounds: routeLine.getBoundingBox()});
+        map.setZoom(map.getZoom() + -0.5, true);
       }
     };
 
@@ -99,24 +100,19 @@ export class RoutingMap extends Component {
       function(error) {
         alert(error.message);
       });
-    // A listener updates the map zoom level -- it is called once when the map 
-    // view change is complete.
-    setTimeout(() => {
-      map.setZoom(map.getZoom() + -0.5, true);
-    }, 500);
   }
 
   componentDidUpdate() {
     const {latitude, longitude} = this.props;
-    this.setMap(latitude, longitude)
+    this.setMap(latitude, longitude);
   }
 
   render() {
     return (
       <Container id="mapContainer">
       </Container>
-    )
+    );
   }
 }
 
-export default RoutingMap
+export default RoutingMap;
