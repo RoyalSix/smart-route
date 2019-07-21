@@ -4,13 +4,14 @@ export const Container = styled.div`
   background-color: black;
   display: flex;
   align-items: center;
-  height: 8.533vw;
+  height: 32px;
+  width: 100%;
 `;
 
 export const Title = styled.div`
   font-family: Muli-Bold;
-  font-size: 3.733vw;
+  font-size: 14px;
   color: #FFFFFF;
   letter-spacing: 0;
-  margin-left: 5.333vw;
+  margin-left: 20px;
 `;

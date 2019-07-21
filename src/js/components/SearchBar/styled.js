@@ -1,18 +1,18 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  height: 17.87vw;
-  margin-left: 5.333vw;
-  margin-right: 10.13vw;
+  height: 67px;
+  margin-left: 9px;
+  margin-right: 38px;
 `;
 
 export const Input = styled.input`
   font-family: Muli-Bold;
-  font-size: 3.733vw;
+  font-size: 14px;
   color: #7C838F;
   letter-spacing: 0;
-  padding-top: 6.133vw;
+  padding-top: 23px;
   border-bottom: 1px #D8D8D8 solid;
-  padding-bottom: 2.400vw;
+  padding-bottom: 9.5px;
   width: 100%;
 `;
