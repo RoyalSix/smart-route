@@ -29,7 +29,6 @@ export function lineIsAtWayPoint(linePoint, routes) {
   for (var index in routes) {
     const route = routes[index];
     const {latitude: routeLatitude, longitude: routeLongitude} = route;
-    console.log(Math.abs(latitude - routeLatitude), Math.abs(longitude - routeLongitude));
     if (Math.abs(latitude - routeLatitude) <= .0001 &&
       Math.abs(longitude - routeLongitude) <= .0001) {
       return parseInt(index);

@@ -35,9 +35,11 @@ export class RoutingMap extends Component {
         }, {icon}));
       }
       var linestring = new H.geo.LineString();
+      var entireLineString = new H.geo.LineString();
       routeShape.forEach((point) => {
         var [latitude, longitude] = point.split(',');
         linestring.pushLatLngAlt(latitude, longitude);
+        entireLineString.pushLatLngAlt(latitude, longitude);
         const matchedWayPointIndex = utils.lineIsAtWayPoint({latitude, longitude}, this.props.routes);
         if (matchedWayPointIndex) {
           const strokeColor = utils.getLineColorFromType(this.props.routes[matchedWayPointIndex].type);
@@ -47,15 +49,14 @@ export class RoutingMap extends Component {
           linestring = new H.geo.LineString();
         }
       });
-      // let routeLineString = new H.geo.LineString();
-      // const firstPoint = routeShape[0].split(',');
-      // routeLineString.pushLatLngAlt(firstPoint[0], firstPoint[1]);
-      // const endPoint = routeShape[routeShape.length - 1].split(',');
-      // routeLineString.pushLatLngAlt(endPoint[0], endPoint[1]);
-      // const routeLine = new H.map.Polyline(routeLineString);
+      const entireLine = new H.map.Polyline(entireLineString, {
+        style: {strokeColor: 'white', lineWidth: 1}
+      });
       this.map.addObjects([...lines, ...markers]);
-      //this.map.getViewModel().setLookAtData({bounds: routeLine.getBoundingBox()});
-      this.map.setZoom(this.map.getZoom() + -0.5, true);
+      this.map.getViewModel().setLookAtData({bounds: entireLine.getBoundingBox()});
+      setTimeout(() => {
+        this.map.setZoom(this.map.getZoom() + -0.4, true);
+      }, 200);
     }
   }
 
