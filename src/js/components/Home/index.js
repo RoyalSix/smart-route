@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {Container} from './styled';
 import Map from '../Map'
 import SearchBox from '../SearchBox';
-import {getInitialLocation, searchLocation} from '../../actions/mapActions';
+import {getInitialLocation, searchLocation, selectAddress} from '../../actions/mapActions';
 
 export class Home extends Component {
   constructor(props) {
@@ -17,7 +17,7 @@ export class Home extends Component {
   }
   render() {
     let content = <div />;
-    const {searchSuggestions, userLocation, searchLocation} = this.props;
+    const {searchSuggestions, userLocation, searchLocation, selectAddress} = this.props;
     switch (this.state.page) {
       case 0: content = <Map {...userLocation} />
         break;
@@ -27,7 +27,7 @@ export class Home extends Component {
     return (
       <Container>
         {/* {content} */}
-        <SearchBox searchSuggestions={searchSuggestions} searchLocation={searchLocation} />
+        <SearchBox selectAddress={selectAddress} searchSuggestions={searchSuggestions} searchLocation={searchLocation} />
       </Container>
     )
   }
@@ -40,7 +40,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   getInitialLocation,
-  searchLocation
+  searchLocation,
+  selectAddress
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

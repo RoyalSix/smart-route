@@ -21,3 +21,10 @@ export function searchLocation(address) {
     })
   }
 }
+
+export function selectAddress(originAddress) {
+  return {
+    type: types.SET_ORIGIN,
+    originAddress
+  }
+}

@@ -1,12 +1,12 @@
 import React from 'react'
 import {Container, Suggestion} from './styled';
 
-function Suggestions({searchSuggestions = []}) {
+function Suggestions({searchSuggestions = [], selectAddress}) {
   return (
     <Container>
       {
-        searchSuggestions.map(({address: {street, state, postalCode, country, city}}) =>
-          <Suggestion>{street} {city} {state}</Suggestion>)
+        searchSuggestions.map(({address: {street, state, city, locationId}}) =>
+          <Suggestion onClick={() => selectAddress(locationId)}>{street} {city} {state}</Suggestion>)
       }
     </Container>
   )

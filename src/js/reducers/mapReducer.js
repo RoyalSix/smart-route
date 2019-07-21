@@ -1,7 +1,8 @@
 import * as types from '../actions/actionTypes';
 
 const initialState = {
-  searchSuggestions: []
+  searchSuggestions: [],
+  originAddress: null
 }
 
 export const mapReducer = (state = initialState, action) => {
@@ -10,6 +11,11 @@ export const mapReducer = (state = initialState, action) => {
       return {
         ...state,
         searchSuggestions: action.searchSuggestions
+      }
+    case types.SET_ORIGIN:
+      return {
+        ...state,
+        originAddress: action.originAddress
       }
 
     default:
