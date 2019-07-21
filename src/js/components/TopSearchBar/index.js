@@ -14,7 +14,7 @@ function TopSearchBar({originAddress, searchDestinationAddress, destinationAddre
           <Marker src={MarkerImage} />
         </Markers>
         <Addresses>
-          <AddressName value={originAddress} />
+          <AddressName value={originAddress.label} />
           <AddressName onChange={({target: {value}}) => searchDestinationAddress(value)} />
         </Addresses>
         <Options>
