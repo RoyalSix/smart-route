@@ -10,6 +10,8 @@ import {
   searchDestinationAddress, selectDestinationAddress
 } from '../../actions/mapActions';
 
+const MOCK_ROUTES = [{latitude: '33.8652', longitude: '-117.99804', type: 'car'}, {latitude: '33.89157', longitude: '-118.00425', type: 'train'}, {latitude: '33.97542', longitude: '-118.03407', type: 'scooter'}];
+
 export class Home extends Component {
   constructor(props) {
     super(props);
@@ -38,7 +40,7 @@ export class Home extends Component {
         content = <Map latitude={latitude} longitude={longitude} />;
       }
         break;
-      case 1: content = <RoutingMap originAddress={{latitude: '33.8652', longitude: '-117.99804'}} destAddress={{latitude: '33.89157', longitude: '-118.00425'}} />;
+      case 1: content = <RoutingMap center={{latitude: '33.8752', longitude: '-117.99904'}} routes={MOCK_ROUTES} />;
         break;
       default:
         break;

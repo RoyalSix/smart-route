@@ -1,6 +1,8 @@
 /*global H*/
 import React, {Component} from 'react';
 import {Container} from './styled';
+import * as utils from '../../utils';
+
 export class RoutingMap extends Component {
   constructor(props) {
     super(props);
@@ -15,56 +17,48 @@ export class RoutingMap extends Component {
   }
   setRoute(result) {
     var route,
-      routeShape,
-      startPoint,
-      endPoint,
-      linestring;
+      routeShape;
     if (result.response.route) {
-      // Pick the first route from the response:
       route = result.response.route[0];
-      // Pick the route's shape:
       routeShape = route.shape;
 
-      // Create a linestring to use as a point source for the route line
-      linestring = new H.geo.LineString();
-
-      // Push all the points in the shape into the linestring:
-      routeShape.forEach(function(point) {
-        var parts = point.split(',');
-        linestring.pushLatLngAlt(parts[0], parts[1]);
+      var markers = [];
+      var lines = [];
+      route.waypoint.forEach((point) => {
+        const position = point.mappedPosition;
+        markers.push(new H.map.Marker({
+          lat: position.latitude,
+          lng: position.longitude
+        }));
       });
-
-      // Retrieve the mapped positions of the requested waypoints:
-      startPoint = route.waypoint[0].mappedPosition;
-      endPoint = route.waypoint[1].mappedPosition;
-
-      // Create a polyline to display the route:
-      var routeLine = new H.map.Polyline(linestring, {
-        style: {strokeColor: 'green', lineWidth: 3}
+      var linestring = new H.geo.LineString();
+      routeShape.forEach((point) => {
+        var [latitude, longitude] = point.split(',');
+        linestring.pushLatLngAlt(latitude, longitude);
+        const matchedWayPointIndex = utils.lineIsAtWayPoint({latitude, longitude}, this.props.routes);
+        if (matchedWayPointIndex) {
+          const strokeColor = utils.getIconFromType(this.props.routes[matchedWayPointIndex].type);
+          console.log("strokeColor", strokeColor);
+          lines.push(new H.map.Polyline(linestring, {
+            style: {strokeColor, lineWidth: 3}
+          }));
+          linestring = new H.geo.LineString();
+        }
       });
-
-      // Create a marker for the start point:
-      var startMarker = new H.map.Marker({
-        lat: startPoint.latitude,
-        lng: startPoint.longitude
-      });
-
-      // Create a marker for the end point:
-      var endMarker = new H.map.Marker({
-        lat: endPoint.latitude,
-        lng: endPoint.longitude
-      });
-
-      // Add the route polyline and the two markers to the map:
-      this.map.addObjects([routeLine, startMarker, endMarker]);
-
-      // Set the map's viewport to make the whole route visible:
-      this.map.getViewModel().setLookAtData({bounds: routeLine.getBoundingBox()});
+      // let routeLineString = new H.geo.LineString();
+      // const firstPoint = routeShape[0].split(',');
+      // routeLineString.pushLatLngAlt(firstPoint[0], firstPoint[1]);
+      // const endPoint = routeShape[routeShape.length - 1].split(',');
+      // routeLineString.pushLatLngAlt(endPoint[0], endPoint[1]);
+      // const routeLine = new H.map.Polyline(routeLineString);
+      this.map.addObjects([...lines, ...markers]);
+      //this.map.getViewModel().setLookAtData({bounds: routeLine.getBoundingBox()});
       this.map.setZoom(this.map.getZoom() + -0.5, true);
     }
   }
-  setMap(originAddress, destAddress) {
-    if (originAddress && destAddress) {
+
+  setMap(routes, center) {
+    if (routes.length) {
       if (this.map) {
         const mapObjects = this.map.getObjects();
         mapObjects.forEach((obj) => {
@@ -79,30 +73,20 @@ export class RoutingMap extends Component {
           defaultLayers.vector.normal.map,
           {
             zoom: 14,
-            center: {lat: 52.51, lng: 13.4}
+            center: {lat: center.latitude, lng: center.longitude}
           });
         new H.mapevents.Behavior(new H.mapevents.MapEvents(this.map));
       }
 
-      // Create the parameters for the routing request:
       var routingParameters = {
-        // The routing mode:
         'mode': 'fastest;car',
-        // The start point of the route:
-        'waypoint0': `geo!${originAddress.latitude},${originAddress.longitude}`,
-        // The end point of the route:
-        'waypoint1': `geo!${destAddress.latitude},${destAddress.longitude}`,
-        // To retrieve the shape of the route we choose the route
-        // representation mode 'display'
         'representation': 'display'
       };
+      routes.forEach((route, index) => {
+        routingParameters[`waypoint${index}`] = `geo!${route.latitude},${route.longitude}`;
+      });
 
-      // Get an instance of the routing service:
       var router = this.platform.getRoutingService();
-
-      // Call calculateRoute() with the routing parameters,
-      // the callback and an error callback function (called if a
-      // communication error occurs):
       router.calculateRoute(routingParameters, this.setRoute,
         function(error) {
           alert(error.message);
@@ -110,9 +94,15 @@ export class RoutingMap extends Component {
     }
   }
 
+  componentDidMount() {
+    const {routes, center} = this.props;
+    this.setMap(routes, center);
+  }
+
+
   componentDidUpdate() {
-    const {originAddress, destAddress} = this.props;
-    this.setMap(originAddress, destAddress);
+    const {routes, center} = this.props;
+    this.setMap(routes, center);
   }
 
   render() {

@@ -32,7 +32,6 @@ export class Map extends Component {
 
   componentDidUpdate() {
     const {latitude, longitude} = this.props;
-    debugger;
     this.setMap(latitude, longitude);
   }
 
