@@ -62,7 +62,13 @@ export function getCoorFromAddress(locationId) {
     fetchHelpers.makeRequest('https://geocoder.api.here.com/6.2/geocode.json', payload)
       .setMethod('GET')
       .send()
-      .then(resolve)
+      .then((res) => {
+        if (res.Response && res.Response.View.length) {
+          const Result = res.Response.View[0].Result;
+          const {Latitude: latitude, Longitude: longitude} = Result[0].Location.DisplayPosition;
+          resolve(latitude, longitude);
+        }
+      })
       .catch(reject)
   });
 }

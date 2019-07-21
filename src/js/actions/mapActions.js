@@ -7,8 +7,8 @@ export function getInitialLocation() {
     dispatch({
       type: types.GET_CURRENT_LOCATION,
       userLocation
-    })
-  }
+    });
+  };
 }
 
 
@@ -18,8 +18,8 @@ export function searchLocation(address) {
     dispatch({
       type: types.SEARCH_LOCATION,
       searchSuggestions: suggestions || []
-    })
-  }
+    });
+  };
 }
 
 export function selectAddress(originAddress) {
@@ -29,5 +29,15 @@ export function selectAddress(originAddress) {
       type: types.SET_ORIGIN,
       originAddress: originAddressCoors
     });
-  }
+  };
+}
+
+export function searchDestinationAddress(address) {
+  return async dispatch => {
+    const {suggestions} = await mapHelpers.getLocations(address);
+    dispatch({
+      type: types.DESTINATION_ADDRESS_SEARCH,
+      destinationAddressSuggestions: suggestions || []
+    });
+  };
 }
