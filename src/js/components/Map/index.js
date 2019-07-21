@@ -19,7 +19,6 @@ export class Map extends Component {
         zoom: 10,
         center: {lat: 52.5, lng: 13.4}
       });
-      debugger;
       new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
   }
 
