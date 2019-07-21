@@ -19,7 +19,7 @@ export class Map extends Component {
         document.getElementById('mapContainer'),
         defaultLayers.vector.normal.map,
         {
-          zoom: 20,
+          zoom: 18,
           center: {lat: latitude, lng: longitude}
         });
       new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
