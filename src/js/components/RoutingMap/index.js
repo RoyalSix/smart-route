@@ -103,8 +103,8 @@ export class RoutingMap extends Component {
   }
 
   componentDidUpdate() {
-    const {latitude, longitude} = this.props;
-    this.setMap(latitude, longitude);
+    const {originAddress, destAddress} = this.props;
+    this.setMap(originAddress, destAddress);
   }
 
   render() {
