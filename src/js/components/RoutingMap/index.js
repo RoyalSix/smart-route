@@ -13,13 +13,13 @@ export class RoutingMap extends Component {
     });
   }
   setMap(originAddress, destAddress) {
-    if (originAddres && destAddress) {
+    if (originAddress && destAddress) {
       debugger;
       if (this.map) {
         const mapObjects = this.map.getObjects();
         mapObjects.forEach((obj) => {
           this.map.removeObject(obj);
-        })
+        });
       } else {
         // Get the default map types from the platform object:
         var defaultLayers = this.platform.createDefaultLayers();
@@ -94,7 +94,7 @@ export class RoutingMap extends Component {
 
           // Set the map's viewport to make the whole route visible:
           this.map.getViewModel().setLookAtData({bounds: routeLine.getBoundingBox()});
-          this.map.setZoom(map.getZoom() + -0.5, true);
+          this.map.setZoom(this.map.getZoom() + -0.5, true);
         }
       };
 
