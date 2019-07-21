@@ -14,7 +14,7 @@ export class Map extends Component {
   }
   setMap(latitude, longitude) {
     if (latitude && longitude) {
-      if (this.map) {
+      if (!this.map) {
         this.map.setCenter({lat: latitude, lng: longitude});
       } else {
         var defaultLayers = this.platform.createDefaultLayers();
