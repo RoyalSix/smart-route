@@ -21,6 +21,7 @@ export class Home extends Component {
       page: 0
     };
     this.selectDestinationAddress = this.selectDestinationAddress.bind(this);
+    this.selectTripOptions = this.selectTripOptions.bind(this);
   }
   componentWillMount() {
     this.props.getInitialLocation();
