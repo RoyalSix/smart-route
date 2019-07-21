@@ -5,6 +5,8 @@ import Map from '../Map';
 import RoutingMap from '../RoutingMap';
 import SearchBox from '../SearchBox';
 import TopSearchBar from '../TopSearchBar';
+import TripOptions from '../TripOptions';
+import RoutingMapNoIcons from '../RoutingMapNoIcons';
 import {
   getInitialLocation, searchLocation, selectAddress,
   searchDestinationAddress, selectDestinationAddress
@@ -16,7 +18,7 @@ export class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      page: 1
+      page: 0
     };
     this.selectDestinationAddress = this.selectDestinationAddress.bind(this);
   }
@@ -26,6 +28,9 @@ export class Home extends Component {
   selectDestinationAddress(address) {
     this.setState({page: 1});
     this.props.selectDestinationAddress(address);
+  }
+  selectTripOptions() {
+    this.setState({page: 2});
   }
   render() {
     let content = <div />;
@@ -40,7 +45,9 @@ export class Home extends Component {
         content = <Map latitude={latitude} longitude={longitude} />;
       }
         break;
-      case 1: content = <RoutingMap center={{latitude: '33.8752', longitude: '-117.99904'}} routes={MOCK_ROUTES} />;
+      case 1: content = <RoutingMapNoIcons center={{latitude: '33.8752', longitude: '-117.99904'}} routes={MOCK_ROUTES} />;
+        break;
+      case 2: content = <RoutingMap center={{latitude: '33.8752', longitude: '-117.99904'}} routes={MOCK_ROUTES} />;
         break;
       default:
         break;
@@ -49,6 +56,7 @@ export class Home extends Component {
       <Container>
         {originAddress ? <TopSearchBar destAddress={destAddress} selectDestinationAddress={this.selectDestinationAddress} destinationAddressSuggestions={destinationAddressSuggestions} searchDestinationAddress={searchDestinationAddress} originAddress={originAddress} /> : null}
         {content}
+        {originAddress &&  destAddress ? <TripOptions destAddress={destAddress} originAddress={originAddress} /> : null}
         {!originAddress ? <SearchBox selectAddress={selectAddress} searchSuggestions={searchSuggestions} searchLocation={searchLocation} /> : null}
       </Container>
     );
