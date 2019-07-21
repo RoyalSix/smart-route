@@ -1,7 +1,9 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux';
-import {Container, Header} from './styled';
+import {Container} from './styled';
 import Map from '../Map'
+import Header from '../Header';
+import SearchBar from '../SearchBar';
 import {getInitialLocation} from '../../actions/mapActions';
 
 export class Home extends Component {
@@ -21,6 +23,8 @@ export class Home extends Component {
     }
     return (
       <Container>
+        <Header />
+        <SearchBar />
         {content}
       </Container>
     )
