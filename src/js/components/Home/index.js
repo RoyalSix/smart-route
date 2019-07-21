@@ -10,13 +10,13 @@ import {
   searchDestinationAddress, selectDestinationAddress
 } from '../../actions/mapActions';
 
-const MOCK_ROUTES = [{latitude: '33.8652', longitude: '-117.99804', type: 'car'}, {latitude: '33.89157', longitude: '-118.00425', type: 'train'}, {latitude: '33.97542', longitude: '-118.03407', type: 'scooter'}];
+const MOCK_ROUTES = [{latitude: '33.97542', longitude: '-118.03407', type: 'train'}, {latitude: '33.8652', longitude: '-117.99804', type: 'uber'}, {latitude: '33.89157', longitude: '-118.00425', type: 'scooter'},];
 
 export class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      page: 0
+      page: 1
     };
     this.selectDestinationAddress = this.selectDestinationAddress.bind(this);
   }
