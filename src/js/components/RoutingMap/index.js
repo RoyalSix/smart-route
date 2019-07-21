@@ -24,21 +24,23 @@ export class RoutingMap extends Component {
 
       var markers = [];
       var lines = [];
-      route.waypoint.forEach((point) => {
+      for (var index in route.waypoint) {
+        const point = route.waypoint[index];
         const position = point.mappedPosition;
+        const png = utils.getIconFromType(this.props.routes[index].type);
+        var icon = new H.map.Icon(png);
         markers.push(new H.map.Marker({
           lat: position.latitude,
           lng: position.longitude
-        }));
-      });
+        }, {icon}));
+      }
       var linestring = new H.geo.LineString();
       routeShape.forEach((point) => {
         var [latitude, longitude] = point.split(',');
         linestring.pushLatLngAlt(latitude, longitude);
         const matchedWayPointIndex = utils.lineIsAtWayPoint({latitude, longitude}, this.props.routes);
         if (matchedWayPointIndex) {
-          const strokeColor = utils.getIconFromType(this.props.routes[matchedWayPointIndex].type);
-          console.log("strokeColor", strokeColor);
+          const strokeColor = utils.getLineColorFromType(this.props.routes[matchedWayPointIndex].type);
           lines.push(new H.map.Polyline(linestring, {
             style: {strokeColor, lineWidth: 3}
           }));

@@ -1,9 +1,11 @@
-import train_icon from './train_icon.svg';
-import scooter_icon from './scooter_icon.svg';
-import walk_icon from './walk_icon.svg';
+import train_icon from './train_icon.png';
+import scooter_icon from './scooter_icon.png';
+import walk_icon from './walk_icon.png';
+import uber_icon from './uber_icon.png';
 
 export function getLineColorFromType(transportationType) {
   switch (transportationType) {
+    default:
     case 'train': return 'orange';
     case 'scooter': return 'green';
     case 'walk': return 'cyan';
@@ -12,9 +14,11 @@ export function getLineColorFromType(transportationType) {
 
 export function getIconFromType(transportationType) {
   switch (transportationType) {
-    case 'train': return 'orange';
-    case 'scooter': return 'green';
-    case 'walk': return 'cyan';
+    default:
+    case 'train': return train_icon;
+    case 'scooter': return scooter_icon;
+    case 'walk': return walk_icon;
+    case 'uber': return uber_icon;
   }
 }
 
