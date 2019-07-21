@@ -51,4 +51,19 @@ export function getDirections(address) {
       .then(resolve)
       .catch(reject)
   });
-} 
+}
+
+export function getCoorFromAddress(address) {
+  return new Promise((resolve, reject) => {
+    const payload = {
+      app_id: 'Kig3MRMv9Gr16jDGZCRs',
+      app_code: 'W7QbBZ7LWkW_NSCsxmU2xQ',
+      searchtext: address
+    }
+    fetchHelpers.makeRequest(HERE_API_URL + '/geocode.json', payload)
+      .setMethod('GET')
+      .send()
+      .then(resolve)
+      .catch(reject)
+  });
+}

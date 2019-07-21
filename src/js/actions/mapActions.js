@@ -23,8 +23,11 @@ export function searchLocation(address) {
 }
 
 export function selectAddress(originAddress) {
-  return {
-    type: types.SET_ORIGIN,
-    originAddress
+  return async dispatch => {
+    const originAddressCoors = await mapHelpers.getCoorFromAddress(originAddress);
+    dispatch({
+      type: types.SET_ORIGIN,
+      originAddress: originAddressCoors
+    });
   }
 }

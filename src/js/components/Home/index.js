@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux';
 import {Container} from './styled';
 import Map from '../Map'
+import RoutingMap from '../RoutingMap';
 import SearchBox from '../SearchBox';
 import {getInitialLocation, searchLocation, selectAddress} from '../../actions/mapActions';
 
@@ -21,12 +22,14 @@ export class Home extends Component {
     switch (this.state.page) {
       case 0: content = <Map {...userLocation} />
         break;
+      case 1: content = <RoutingMap />
+        break;
       default:
         break;
     }
     return (
       <Container>
-        {/* {content} */}
+        {content}
         <SearchBox selectAddress={selectAddress} searchSuggestions={searchSuggestions} searchLocation={searchLocation} />
       </Container>
     )
