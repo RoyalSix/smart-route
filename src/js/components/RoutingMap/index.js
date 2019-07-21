@@ -91,7 +91,7 @@ export class RoutingMap extends Component {
     };
 
     // Get an instance of the routing service:
-    var router = platform.getRoutingService();
+    var router = this.platform.getRoutingService();
 
     // Call calculateRoute() with the routing parameters,
     // the callback and an error callback function (called if a

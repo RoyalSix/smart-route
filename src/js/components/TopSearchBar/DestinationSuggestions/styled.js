@@ -4,6 +4,7 @@ export const Container = styled.div`
   flex: 1;
   overflow: scroll;
   width: 100%;
+  background-color: white;
 `;
 
 export const Suggestion = styled.div`
