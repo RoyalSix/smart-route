@@ -5,6 +5,7 @@ export const Container = styled.div`
   flex-direction: column;
   height: 100vh;
   background-color: grey;
+  position: relative;
 `;
 
 export const Header = styled.div`
