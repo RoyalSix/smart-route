@@ -1,5 +1,13 @@
 import styled from 'styled-components';
 
+export const Container = styled.div`
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100vw;
+`;
+
 export const Marker = styled.img`
   width: 13px;
   height: 13px;
@@ -7,7 +15,7 @@ export const Marker = styled.img`
   margin-top: 6px;
 `;
 
-export const Container = styled.div`
+export const SearchContainer = styled.div`
   background-color: white;
   display: flex;
   height: 80px;
