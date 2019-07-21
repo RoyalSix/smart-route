@@ -52,12 +52,12 @@ export function getDirections(address) {
   });
 }
 
-export function getCoorFromAddress(address) {
+export function getCoorFromAddress(locationId) {
   return new Promise((resolve, reject) => {
     const payload = {
       app_id: 'Kig3MRMv9Gr16jDGZCRs',
       app_code: 'W7QbBZ7LWkW_NSCsxmU2xQ',
-      searchtext: address
+      locationId
     }
     fetchHelpers.makeRequest('https://geocoder.api.here.com/6.2/geocode.json', payload)
       .setMethod('GET')
